@@ -1,0 +1,57 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Policy;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace priorochka
+{
+    public class Score
+    {
+        private Dictionary<string, int> subjects;
+
+        public Score()
+        {
+            subjects = new Dictionary<string, int>
+            {
+                ["Математика"] = 0,
+                ["Русский"] = 0,
+                ["Физика"] = 0
+            };
+        }
+
+        public int this[string subject]
+        {
+            get
+            {
+                if (subjects.ContainsKey(subject))
+                    return subjects[subject];
+                else
+                    return 0;
+            }
+            set
+            {
+                if (subjects.ContainsKey(subject))
+                    subjects[subject] = value;
+            }
+        }
+
+        public override string ToString()
+        {
+            return $"Математика: {subjects["Математика"]}, Русский: {subjects["Русский"]}, Физика: {subjects["Физика"]}";
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var s = new Score();
+            s["Математика"] = 5;
+            s["Русский"] = 4;
+            Console.WriteLine(s["Математика"]); 
+            Console.WriteLine(s); 
+        }
+    }
+}
